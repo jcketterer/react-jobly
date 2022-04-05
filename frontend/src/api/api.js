@@ -41,11 +41,59 @@ class JoblyApi {
     return res.company
   }
 
-  // obviously, you'll add a lot here ...
+  /** Gets the current user. */
+
+  static async getCurrUser(username) {
+    let res = await this.request(`users/${username}`)
+    return res.user
+  }
+
+  /** Gets companies filtered by company name and returns undefined if no such company is found. */
+
+  static async getCompanies(name) {
+    let res = await this.request('companies', { name })
+    return res.companies
+  }
+
+  /** Gets List of Jobs filtered by job title */
+
+  static async getJobs(title) {
+    let res = await this.request('jobs', { title })
+    return res.jobs
+  }
+
+  /** API helper to apply to Job */
+
+  static async jobApplication(username, id) {
+    await this.request(`users/${username}/jobs/${id}`, {}, 'post')
+  }
+
+  /** Get token from login */
+
+  static async login(data) {
+    let res = await this.request(`auth/token`, data, 'post')
+    return res.token
+  }
+
+  /** Register to site */
+
+  static async register(data) {
+    let res = await this.request(`auth/register`, data, 'post')
+    return res.register
+  }
+
+  /** Saving user account page */
+
+  static async saveUserAccount(username, data) {
+    let res = await this.request(`users/${username}`, data, 'patch')
+    return res.user
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
-  'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
-  'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc'
+// JoblyApi.token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
+//   'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
+//   'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc'
+
+export default JoblyApi
