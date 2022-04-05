@@ -20,7 +20,7 @@ const RegisterForm = ({ register }) => {
     typeof register,
     'formData=',
     formData,
-    'formErrors',
+    'formErrors=',
     formErrors
   )
 
@@ -96,7 +96,7 @@ const RegisterForm = ({ register }) => {
                 />
               </div>
 
-              {formErrors.length ? <Alert type="danger" message={formErrors} /> : null}
+              {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
 
               <button
                 type="submit"

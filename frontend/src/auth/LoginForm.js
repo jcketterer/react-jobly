@@ -10,7 +10,15 @@ const LoginForm = ({ login }) => {
   })
   const [formErrors, setFormErrors] = useState([])
 
-  console.debug('LoginForm', 'login=', login, 'formData=', formData, 'formErrors=', formErrors)
+  console.debug(
+    'LoginForm',
+    'login=',
+    typeof login,
+    'formData=',
+    formData,
+    'formErrors',
+    formErrors
+  )
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -19,18 +27,20 @@ const LoginForm = ({ login }) => {
       history.push('/companies')
     } else {
       setFormErrors(res.errors)
+      console.log('formErrors', formErrors)
     }
   }
 
   const handleChange = e => {
     const { name, value } = e.target
-    setFormData(data => ({ ...data, [name]: value }))
+    setFormData(l => ({ ...l, [name]: value }))
   }
 
   return (
     <div className="LoginForm">
       <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
         <h3 className="mb-3">Log In</h3>
+
         <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
@@ -45,7 +55,7 @@ const LoginForm = ({ login }) => {
                   required
                 />
               </div>
-              <div className="form-group">
+              <div className="form-group mb-3">
                 <label>Password</label>
                 <input
                   type="password"
@@ -58,9 +68,9 @@ const LoginForm = ({ login }) => {
                 />
               </div>
 
-              {formErrors.length ? <Alert type="danger" message={formErrors} /> : null}
+              {formErrors.length > 0 ? <Alert type="danger" messages={formErrors} /> : null}
 
-              <button className="btn btn-primary float-right mt-3" onSubmit={handleSubmit}>
+              <button className="btn btn-primary float-right mt-2" onSubmit={handleSubmit}>
                 Submit
               </button>
             </form>

@@ -43,7 +43,7 @@ const ProfileForm = () => {
     let updatedUser
 
     try {
-      updatedUser = await JoblyApi.saveProfile(username, profileData)
+      updatedUser = await JoblyApi.saveUserAccount(username, profileData)
     } catch (e) {
       setFormErrors(e)
       return
@@ -113,10 +113,10 @@ const ProfileForm = () => {
               />
             </div>
 
-            {formErrors.length ? <Alert type="danger" message={formErrors} /> : null}
+            {formErrors.length ? <Alert type="danger" messages={formErrors} /> : null}
 
             {saveConfirmed ? (
-              <Alert type="success" message={['Update Completed Successfully!']} />
+              <Alert type="success" messages={['Update Completed Successfully!']} />
             ) : null}
 
             <button className="btn btn-primary btn-block mt-4" onClick={handleSubmit}>

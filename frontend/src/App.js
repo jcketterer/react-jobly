@@ -54,9 +54,9 @@ function App() {
       let token = await JoblyApi.register(registerData)
       setToken(token)
       return { success: true }
-    } catch (e) {
-      console.error('registration failed', e)
-      return { success: false, e }
+    } catch (errors) {
+      console.error('registration failed', errors)
+      return { success: false, errors }
     }
   }
 
@@ -65,9 +65,9 @@ function App() {
       let token = await JoblyApi.login(loginData)
       setToken(token)
       return { success: true }
-    } catch (e) {
-      console.error('login failed', e)
-      return { success: false, e }
+    } catch (errors) {
+      console.error('login failed', errors)
+      return { success: false, errors }
     }
   }
 
