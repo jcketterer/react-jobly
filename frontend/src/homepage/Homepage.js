@@ -11,12 +11,12 @@ const Homepage = () => {
     <div className="Homepage">
       <div className="container text-center">
         <h1 className="mb-4 font-weight-bold">Jobly!</h1>
-        <p className="lead">All the jobs in one, simple place</p>
+        <p className="lead">All the Jobs in one, simple place.</p>
         {currUser ? (
           <h2>Welcome Back, {currUser.firstName || currUser.username}!</h2>
         ) : (
           <p>
-            <Link className="btn btn-primary m-3 font-weight-bold" to="/login">
+            <Link className="btn btn-primary font-weight-bold mr-3" to="/login">
               Log In
             </Link>
             <Link className="btn btn-primary font-weight-bold" to="/register">

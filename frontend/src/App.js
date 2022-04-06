@@ -4,9 +4,9 @@ import NavBar from './nav-routes/NavBar'
 import Routes from './nav-routes/Routes'
 import UserContext from './auth/UserContext'
 import useLocalStorage from './hooks/useLocalStorage'
+import LoadingSpinner from './common/LoadingSpinner'
 import JoblyApi from './api/api'
 import jwt from 'jsonwebtoken'
-import './App.css'
 
 export const TOKEN_ID = 'jobly-token'
 
@@ -71,17 +71,17 @@ function App() {
     }
   }
 
-  const jobApps = async id => {
+  const jobApps = id => {
     return appIDs.has(id)
   }
 
-  const applyToJob = async id => {
+  const applyToJob = id => {
     if (jobApps(id)) return
     JoblyApi.applyToJob(currUser.username, id)
     setAppIDs(new Set([...appIDs, id]))
   }
 
-  if (!infoLoaded) return <p>Loading....</p> //ADD LOADING COMPONENT HERE
+  if (!infoLoaded) return <LoadingSpinner />
 
   return (
     <BrowserRouter>
